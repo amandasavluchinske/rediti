@@ -1,0 +1,19 @@
+{% load static %}
+<html>
+
+<head>
+  <title>Rediti</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  <div class="container">
+    {% block body %}{% endblock %}
+  </div>
+  <footer>
+    <span>Rediti feito nas férias de alto impacto de 2019.1</span>
+  </footer>
+</body>
+
+</html>

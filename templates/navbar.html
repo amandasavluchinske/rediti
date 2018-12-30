@@ -1,0 +1,13 @@
+<div class="navbar">
+    <div><img class="site-logo" src="https://logodownload.org/wp-content/uploads/2018/02/reddit-logo.png"></div>
+    <div class="nav-links">
+        <a href="">Início</a>
+        {% if user.is_authenticated %}
+            <a href="">{{ user.username }}</a>
+            <a href="">Logout</a>
+        {% else %}
+            <a href="">Cadastro</a>
+            <a href="">Login</a>
+        {% endif %}
+    </div>
+</div>

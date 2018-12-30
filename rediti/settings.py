@@ -61,7 +61,7 @@ ROOT_URLCONF = 'rediti.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [base_dir_join('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

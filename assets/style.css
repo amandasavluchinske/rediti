@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+}
+.navbar {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CDE3F8;
+    height: 50px;
+}
+.site-logo {
+    width: 100px;
+}
+.container {
+    padding: 10px;
+}
