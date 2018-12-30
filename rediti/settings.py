@@ -15,6 +15,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+def base_dir_join(*args):
+    return os.path.join(BASE_DIR, *args)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -117,4 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = base_dir_join('staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    base_dir_join('assets'),
+)
+
+MEDIA_ROOT = base_dir_join('mediafiles')
+MEDIA_URL = '/media/'
