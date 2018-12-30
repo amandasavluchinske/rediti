@@ -6,6 +6,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('common.urls')),
+    path('', include('users.urls')),
 ]
 
 if settings.DEBUG:
