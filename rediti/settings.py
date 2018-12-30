@@ -132,3 +132,6 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = base_dir_join('mediafiles')
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'

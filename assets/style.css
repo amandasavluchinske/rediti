@@ -9,6 +9,12 @@ body {
     background-color: #CDE3F8;
     height: 50px;
 }
+.nav-links {
+    background-color: #ecf4fb;
+}
+.nav-link {
+    color: blue;
+}
 .site-logo {
     width: 100px;
 }

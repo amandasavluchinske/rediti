@@ -9,7 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin, IndexedTimeStampedModel):
     name = models.CharField(max_length=60, blank=True)
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
-    karma = models.IntegerField(blank=True, null=True)
+    karma = models.IntegerField(default=0)
     avatar = models.ImageField(blank=True)
     is_staff = models.BooleanField(default=False)
 
