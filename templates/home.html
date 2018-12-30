@@ -2,12 +2,18 @@
 
 {% block body %}
     <div>
-        {% if subscriptions %}
-            {% for sub in subscriptions %}
-                <a href="">{{ sub.subrediti.threads.first }}</a>
-            {% endfor %}
+        {% if user.is_authenticated %}
+            {% if subscriptions %}
+                {% for sub in subscriptions %}
+                    <a href="">{{ sub.subrediti.threads.first }}</a>
+                {% endfor %}
+            {% else %}
+                You don't have any subscriptions yet.
+            {% endif %}
         {% else %}
-            You don't have any subscriptions yet.
+            {% for subrediti in subreditis %}
+                <a href="">{{ subrediti.threads.first }}</a>
+            {% endfor %}
         {% endif %}
     </div>
 {% endblock %}
