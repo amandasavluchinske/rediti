@@ -12,6 +12,7 @@
                 {% for thread in user.threads.all %}
                 <div class="card">
                     <div class="karma-buttons">
+                        {{ thread.vote_count }}<br>
                         <button>↑</button><br>
                         <button>↓</button>
                     </div>
@@ -36,6 +37,7 @@
                 {% for post in user.posts.all %}
                 <div class="card">
                     <div class="karma-buttons">
+                        {{ post.vote_count }}<br>
                         <button>↑</button><br>
                         <button>↓</button>
                     </div>

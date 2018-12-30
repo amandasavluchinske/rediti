@@ -64,6 +64,9 @@ footer {
     align-items: center;
 }
 .karma-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 50px;
     padding: 5px;
 }
