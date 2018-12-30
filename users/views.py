@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 
 from .forms import UserForm
+from .models import User
 
 
 class LogoutView(views.LogoutView):
@@ -40,3 +41,8 @@ class SignupView(generic.FormView):
         auth.login(self.request, user)
 
         return redirect('common:home')
+
+
+class ProfileView(generic.DetailView):
+    template_name = "users/profile.html"
+    model = User

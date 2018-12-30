@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="profile-container">
+    <div class="profile-info">
+        <img class="profile-pic" src="{{ user.avatar.url }}">
+        <div>u/{{ user.username }}</div>
+        <div>{{ user.karma }} Karma</div>
+    </div>
+    <div class="posting-info">
+        <div class="threads">
+            {% if user.threads %}
+                {% for thread in user.threads.all %}
+                    <div class="card">
+                        {{ thread.title }}
+                    </div>
+                {% endfor %}
+            {% else %}
+                Esse usuário ainda não criou nenhuma thread :(
+            {% endif %}
+        </div>
+        <div class="divider"></div>
+        <div class="posts">
+            {% if user.posts %}
+                {% for post in user.posts.all %}
+                    {{ post.content }}
+                {% endfor %}
+            {% else %}
+                Esse usuário ainda não postou nada :(
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

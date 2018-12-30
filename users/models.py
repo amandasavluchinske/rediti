@@ -10,7 +10,7 @@ class User(AbstractBaseUser, PermissionsMixin, IndexedTimeStampedModel):
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
     karma = models.IntegerField(default=0)
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(blank=True, default="reditiavatar.png")
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()

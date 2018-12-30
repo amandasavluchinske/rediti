@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <div>por enquanto nada</div>
+    <div>
+        {% if subscriptions %}
+            {% for sub in subscriptions %}
+                <a href="">{{ sub.subrediti.threads.first }}</a>
+            {% endfor %}
+        {% else %}
+            You don't have any subscriptions yet.
+        {% endif %}
+    </div>
 {% endblock %}
