@@ -2,7 +2,7 @@
 
 O Reddit é uma rede social estilo fórum online em que pessoas podem se cadastrar, participar de fóruns chamados subreddits, comentar, criar posts, curtir ou descurtir comentários. Nesse curso iremos construir o Rediti, nossa versão simplificada do site.
 
-![Foto da página inicial do Reddit](https://i.imgur.com/TmGKVT6.png "Reddit")
+![Foto da página inicial do Reddit](https://i.imgur.com/KYcETZT.png "Reddit")
 
 Requisitos do projeto:
 
