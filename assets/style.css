@@ -55,3 +55,18 @@ footer {
     justify-content: space-between;
     width: 100%;
 }
+.card {
+    background-color: white;
+    width: 700px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.karma-buttons {
+    width: 50px;
+    padding: 5px;
+}
+.card-content {
+    width: 100%;
+}

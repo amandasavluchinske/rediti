@@ -10,9 +10,21 @@
         <div class="threads">
             {% if user.threads %}
                 {% for thread in user.threads.all %}
-                    <div class="card">
-                        {{ thread.title }}
+                <div class="card">
+                    <div class="karma-buttons">
+                        <button>↑</button><br>
+                        <button>↓</button>
                     </div>
+                    <div class="card-content">
+                        <div>
+                            {{ thread.title }} 
+                            by <a href="{% url 'users:profile' thread.author.pk %}">
+                                {{ thread.author }}
+                                </a> in 
+                                <a href="">{{ thread.subrediti }}</a></div>
+                        <div>{{ post.content }}</div>
+                    </div>
+                </div>
                 {% endfor %}
             {% else %}
                 Esse usuário ainda não criou nenhuma thread :(
@@ -22,7 +34,21 @@
         <div class="posts">
             {% if user.posts %}
                 {% for post in user.posts.all %}
-                    {{ post.content }}
+                <div class="card">
+                    <div class="karma-buttons">
+                        <button>↑</button><br>
+                        <button>↓</button>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            {{ post.thread.title }} 
+                            by <a href="{% url 'users:profile' post.thread.author.pk %}">
+                                {{ post.thread.author }}
+                                </a> in 
+                                <a href="">{{ post.thread.subrediti }}</a></div>
+                        <div>{{ post.content }}</div>
+                    </div>
+                </div>
                 {% endfor %}
             {% else %}
                 Esse usuário ainda não postou nada :(
