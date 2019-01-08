@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class="main-title">{{ thread.title }}</h1>
+<a href="{% url 'subs:create_post' %}?thread={{ thread.id }}">Novo post</a>
+<div class="forum-container">
+    <div class="subrediti-list">
+        {% for post in thread.posts.all %}
+        <div class="subrediti-card">
+            <div>
+                <a href="{% url 'users:profile' thread.author.pk %}">
+                    {{ post.author }}
+                </a> at {{ post.created }}
+                <div>
+                    {{ post.content }}
+                </div>
+            </div>
+            <div class="karma-buttons">
+                {{ thread.vote_count }}<br>
+                <button>↑</button><br>
+                <button>↓</button>
+            </div>
+        </div>
+        {% empty %}
+        Awww, ninguém postou ainda :(
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

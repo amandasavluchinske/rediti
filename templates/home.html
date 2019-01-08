@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <div>
+    <div class="list-container">
         {% if user.is_authenticated %}
             {% if subscriptions %}
                 {% for sub in subscriptions %}
-                    <a href="">{{ sub.subrediti.threads.first }}</a>
+                    <div class="list-thread"><a href="">{{ sub.subrediti.threads.first }}</a></div>
                 {% endfor %}
             {% else %}
                 You don't have any subscriptions yet.
             {% endif %}
         {% else %}
             {% for subrediti in subreditis %}
-                <a href="">{{ subrediti.threads.first }}</a>
+            <div class="list-thread"><a href="">{{ subrediti.threads.first }}</a></div>
             {% endfor %}
         {% endif %}
     </div>

@@ -17,7 +17,7 @@ footer {
     background-color: #ecf4fb;
     display: flex;
     justify-content: space-around;
-    width: 300px;
+    width: 400px;
 }
 .nav-link {
     color: blue;
@@ -72,4 +72,29 @@ footer {
 }
 .card-content {
     width: 100%;
+}
+.list-container {
+    margin: 10px;
+}
+.list-thread {
+    border: 1px solid black;
+}
+.forum-container {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+.subrediti-list {
+    width: 900px;
+    border: 1px solid black;
+}
+.subrediti-card {
+    margin: 10px;
+    border: 1px solid black;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.main-title {
+    text-align: center;
 }

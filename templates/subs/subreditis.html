@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class="main-title">Subreditis</h1>
+<div class="forum-container">
+    <div class="subrediti-list">
+        {% for subrediti in subreditis %}
+        <div class="subrediti-card">
+            <div>
+                <h4><a href="{% url 'subs:subrediti' subrediti.slug %}">{{ subrediti.title }}</a></h4>
+                <div>{{ subrediti.description }}</div>
+            </div>
+        </div>
+        {% empty %}
+        Awww, ninguém criou nenhum subrediti :(
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@
         <a class="nav-link" href="/">Início</a> |
         {% if user.is_authenticated %}
             <a class="nav-link" href="">Novo subrediti</a> |
+            <a class="nav-link" href="{% url 'subs:subreditis' %}">Subreditis</a> |
             <a class="nav-link" href="{% url 'users:profile' user.pk %}">{{ user.username }} ({{ user.karma }})</a> |
             <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
         {% else %}

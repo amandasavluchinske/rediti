@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+<a href="{% url 'subs:thread' thread.id %}">Back to {{ thread.title }}</a>
+<h3>Creating thread in {{ thread.title }}</h3>
+{% if form.errors %}
+{{ form.non_field_errors }}
+{{ form.errors.name }}
+{% endif %}
+<form class="post-form" method="POST">
+{% csrf_token %}
+<label>Conteúdo do post</label>
+<textarea type="text" name="content" placeholder="Escreva aqui"></textarea>
+<input type="submit" value="Create">
+</form>
+{% endblock %}
