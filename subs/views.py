@@ -62,3 +62,9 @@ class CreatePostView(generic.CreateView):
     def get_success_url(self):
         thread = Thread.objects.get(id=self.thread)
         return reverse('subs:thread', kwargs={'pk': thread.pk})
+
+
+class DeletePostView(generic.DeleteView):
+    model = Post
+    template_name = 'subs/post_confirm_delete.html'
+    success_url = 'home'

@@ -13,10 +13,13 @@
                 <div>
                     {{ post.content }}
                 </div>
+                {% if request.user.id == post.author.id %}
+                <a href="{% url 'subs:delete_post' post.pk %}">Delete post</a>
+                {% endif %}
             </div>
             <div class="karma-buttons">
                 {{ thread.vote_count }}<br>
-                <button>↑</button><br>
+                <a href=""><button>↑</button></a><br>
                 <button>↓</button>
             </div>
         </div>

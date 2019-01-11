@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<a href="{% url 'subs:subrediti' subrediti.id %}">Back to {{ subrediti.title }}</a>
+<a href="{% url 'subs:subrediti' subrediti.slug %}">Back to {{ subrediti.title }}</a>
 <h3>Creating thread in {{ subrediti.title }}</h3>
 {% if form.errors %}
 {{ form.non_field_errors }}
