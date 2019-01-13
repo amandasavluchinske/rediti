@@ -6,7 +6,6 @@ from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin, IndexedTimeStampedModel):
-    name = models.CharField(max_length=60, blank=True)
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
     description = models.TextField(max_length=250, blank=True)
