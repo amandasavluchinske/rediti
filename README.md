@@ -16,4 +16,3 @@ Requisitos do projeto:
 8. Se o usuário estiver logado, os posts da página inicial serão as últimas threads dos subreditis em que ele está inscrito, senão, serão as últimas threads de cada um dos subreditis do site.
 9. Um front bonitinho é legal, mas não é obrigatório.
 10. O usuário poderá deletar um post se o mesmo pertencer a ele. Threads não poderão ser deletadas.
-11. O usuário poderá editar seu perfil.
