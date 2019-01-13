@@ -1,6 +1,7 @@
 from django.views import generic
 from subs.models import Subscription, Subrediti
-from .helpers import modify_post_karma
+from .helpers import modify_karma
+
 
 class HomeView(generic.TemplateView):
     template_name = "home.html"
@@ -13,13 +14,9 @@ class HomeView(generic.TemplateView):
         return context
 
 
-class UpvoteView(generic.RedirectView):
-    def dispatch(self, request, *args, **kwargs):
-        modify_post_karma()
-        return super().dispatch(*args, **kwargs)
-
-
-class DownvoteView(generic.RedirectView):
-    def dispatch(self, request, *args, **kwargs):
-        modify_post_karma()
-        return super().dispatch(*args, **kwargs)
+class VoteView(generic.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        self.target_type = self.request.GET.get('target_type', None)
+        self.target_id = self.request.GET.get('target_id', None)
+        modify_karma(self.target_type, self.target_id, self.request.user)
+        return self.request.META.get('HTTP_REFERER')

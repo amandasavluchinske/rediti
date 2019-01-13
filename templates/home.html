@@ -1,19 +1,42 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div class="home">
     <div class="list-container">
+        <h1>/home</h1>
         {% if user.is_authenticated %}
             {% if subscriptions %}
                 {% for sub in subscriptions %}
-                    <div class="list-thread"><a href="">{{ sub.subrediti.threads.first }}</a></div>
+                    {% if sub.subrediti.threads.first and sub.subscribed == True %}
+                    <div class="list-thread">
+                        <span>{{ sub.subrediti.title }}</span>
+                        <a href="{% url 'subs:thread' sub.subrediti.threads.first.pk %}">{{ sub.subrediti.threads.first }}</a>
+                        by <a href="{% url 'users:profile' sub.subrediti.threads.first.author.id %}">{{ sub.subrediti.threads.first.author }}</a>
+                    </div>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 You don't have any subscriptions yet.
             {% endif %}
         {% else %}
             {% for subrediti in subreditis %}
-            <div class="list-thread"><a href="">{{ subrediti.threads.first }}</a></div>
+                {% if subrediti.threads.first %}
+                <div class="list-thread">
+                    <span>{{ subrediti.title }}</span>
+                    <a href="{% url 'subs:thread' subrediti.threads.first.pk %}">{{ subrediti.threads.first }}</a>
+                    by <a href="{% url 'users:profile' subrediti.threads.first.author.id %}">{{ subrediti.threads.first.author }}</a>
+                </div>
+                {% endif %}
             {% endfor %}
         {% endif %}
     </div>
+    <div class="new-subs">
+        <h1>/new subreditis</h1>
+        {% for new_sub in subreditis %}
+        <li><a href="{% url 'subs:subrediti' new_sub.pk %}">{{ new_sub.title }}</a></li>
+        {% empty %}
+        No new subreditis
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

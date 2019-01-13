@@ -15,10 +15,9 @@
             {% if user.threads %}
                 {% for thread in user.threads.all %}
                 <div class="card">
-                    <div class="karma-buttons">
+                    <div class="karma-button">
                         {{ thread.vote_count }}<br>
-                        <button>↑</button><br>
-                        <button>↓</button>
+                        <a href="{% url 'common:vote' %}?target_type=thread&target_id={{ thread.id }}"><button>↑</button></a>
                     </div>
                     <div class="card-content">
                         <div>
@@ -41,10 +40,9 @@
             {% if user.posts %}
                 {% for post in user.posts.all %}
                 <div class="card">
-                    <div class="karma-buttons">
+                    <div class="karma-button">
                         {{ post.vote_count }}<br>
-                        <button>↑</button><br>
-                        <button>↓</button>
+                        <a href="{% url 'common:vote' %}?target_type=post&target_id={{ post.id }}"><button>↑</button></a>
                     </div>
                     <div class="card-content">
                         <div>

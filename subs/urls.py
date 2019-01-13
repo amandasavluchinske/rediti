@@ -1,5 +1,5 @@
 from django.urls import path
-from subs.views import SubreditisListView, SubreditiDetailView, ThreadDetailView, CreateThreadView, CreatePostView, DeletePostView
+from subs.views import SubreditisListView, SubreditiDetailView, ThreadDetailView, CreateThreadView, CreatePostView, DeletePostView, SubscribeView
 
 app_name = 'subs'
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('thread/new/', CreateThreadView.as_view(), name='create_thread'),
     path('post/new/', CreatePostView.as_view(), name='create_post'),
     path('post/delete/<int:pk>', DeletePostView.as_view(), name='delete_post'),
+    path('subscribe', SubscribeView.as_view(), name='subscribe'),
 ]

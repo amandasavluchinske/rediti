@@ -40,6 +40,7 @@ class Post(IndexedTimeStampedModel):
 class Subscription(models.Model):
     subrediti = models.ForeignKey('Subrediti', on_delete=models.CASCADE)
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    subscribed = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [('subrediti', 'user')]

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
-from .models import Subrediti, Thread, Post
+from .models import Subrediti, Thread, Post, Subscription
 from .forms import CreateThreadForm, CreatePostForm
+from .helpers import subscribe_or_unsubscribe
 
 class SubreditisListView(generic.ListView):
     template_name = 'subs/subreditis.html'
@@ -13,6 +14,12 @@ class SubreditisListView(generic.ListView):
 class SubreditiDetailView(generic.DetailView):
     template_name = 'subs/subrediti.html'
     model = Subrediti
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        subscription, created = Subscription.objects.get_or_create(user=self.request.user, subrediti=self.object)
+        context['subscribed'] = True if subscription.subscribed else False
+        return context
 
 
 class ThreadDetailView(generic.DetailView):
@@ -68,3 +75,10 @@ class DeletePostView(generic.DeleteView):
     model = Post
     template_name = 'subs/post_confirm_delete.html'
     success_url = 'home'
+
+
+class SubscribeView(generic.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        self.subrediti = self.request.GET.get('sub', None)
+        subscribe_or_unsubscribe(self.subrediti, self.request.user)
+        return self.request.META.get('HTTP_REFERER')

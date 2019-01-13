@@ -2,37 +2,33 @@ from subs.models import Post, Thread
 from .models import VotePost, VoteThread
 from users.helpers import update_user_karma
 
-def return_thread_or_post(target_type, target_id, user, vote_type):
-    if vote_type == 'upvote':
-        vote = 1
-    if vote_type == 'downvote':
-        vote = -1
+def return_thread_or_post(target_type, target_id, user):
     if target_type == 'post':
-        VotePost.objects.create(post=target_id, user=user, vote=vote)
         return Post.objects.get(id=target_id)
     if target_type == 'thread':
-        VoteThread.objects.create(post=target_id, user=user, vote=vote)
         return Thread.objects.get(id=target_id)
 
-def check_for_repeated_vote(target_type, target_id, vote_type):
+def return_votethread_or_votepost(target_type, target, user):
     if target_type == 'post':
-        vote = VoteThread.objects.get(id=target_id)
+        return VotePost.objects.get_or_create(post=target, user=user)
     if target_type == 'thread':
-        vote = VotePost.objects.get(id=target_id)
-    if vote_type == 'upvote' and vote.count == 1:
-        return True
-    if vote_type == 'downvote' and vote.count == -1:
-        return True
-    return False
+        return VoteThread.objects.get_or_create(thread=target, user=user)
 
-
-def modify_post_karma(target_type, target_id, user, vote_type):
-    if check_for_repeated_vote(target_type, target_id, vote_type):
-        return
-    target = return_thread_or_post(target_type, target_id, user, vote_type)
-    if vote_type == 'upvote':
-        target.vote_count +=1
-    if vote_type == 'downvote':
+def modify_vote_count(vote, target):
+    if vote.count == 1:
+        vote.count = 0
+        vote.save()
         target.vote_count -= 1
+        target.save()
+        return
+    vote.count = 1
+    vote.save()
+    target.vote_count += 1
     target.save()
+    return
+
+def modify_karma(target_type, target_id, user):
+    target = return_thread_or_post(target_type, target_id, user)
+    vote, created = return_votethread_or_votepost(target_type, target, user)
+    modify_vote_count(vote, target)
     update_user_karma(target.author)

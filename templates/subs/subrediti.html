@@ -2,6 +2,14 @@
 {% block body %}
 <h1 class="main-title">{{ subrediti.title }}</h1>
 <a href="{% url 'subs:create_thread' %}?sub={{ subrediti.id }}">Nova thread</a>
+<a href="{% url 'subs:subscribe' %}?sub={{ subrediti.id }}">
+    {% if subscribed %}
+        Desinscrever-se
+    {% else %}
+        Inscrever-se
+    {% endif %}
+</a>
+
 <div class="forum-container">
     <div class="subrediti-list">
         {% for thread in subrediti.threads.all %}
@@ -14,10 +22,9 @@
                     {{ thread.author }}
                 </a> at {{ thread.created }}
             </h4>
-            <div class="karma-buttons">
+            <div class="karma-button">
                 {{ thread.vote_count }}<br>
-                <button>↑</button><br>
-                <button>↓</button>
+                <a href="{% url 'common:vote' %}?target_type=thread&target_id={{ thread.id }}"><button>↑</button></a>
             </div>
         </div>
         {% empty %}
